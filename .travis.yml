@@ -1,2 +1,18 @@
 language: objective-c
 osx_image: xcode9.2
+
+# SonarQube Settings
+dist: trusty
+sudo: required
+
+addons:
+    sonarcloud:
+        organization: "0f4e4ab6d3b29050af53d37e1497e1a12d840427"
+        token:
+            secure: "aAy9Bgfwy2MeMNDyaVEGVE"
+script:
+    - build-wrapper-linux-x86-64 --out-dir bw-output make clean all
+    - sonar-scanner
+cache:
+    directories:
+        - '$HOME/.sonar/cache'
